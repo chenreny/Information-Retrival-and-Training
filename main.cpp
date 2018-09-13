@@ -10,8 +10,8 @@ using Pair_type = std::pair<std::string, std::string>;
 
 class Classifier{
 public:
-    //MODIFIES: this
-    //EFFECTS: read in data from train file, print some information and
+    
+    //read in data from training file, print some information and
     //initilize private member variable of this class, which is:
     //countWord<word, number in all posts>
     //countLabel<label, number in all posts>
@@ -56,9 +56,8 @@ public:
         }
         return true;
     }
-    
-    //MODIFIES:input string
-    //EFFECTS:separate a string to a set of unique words
+   
+    //separate a string to a set of unique words
     set<string> unique_words(const string &str){
         istringstream source(str);
         set<string> words;
@@ -69,13 +68,13 @@ public:
         return words;
     }
     
-    //EFFECTS:count log prior
+    //count log prior
     double logPrior(string label){
         double result = log(countLabel[label] / static_cast<double>(totalPost));
         return result;
     }
     
-    //EFFECTS:count loglikelihood
+    //count loglikelihood
     double logLikelihood(string label, string word){
         double result = 0;
         Pair_type val = {label, word};
@@ -92,7 +91,7 @@ public:
         return result;
     }
     
-    //EFFECTS:count log probability score for a given label and post
+    //count log probability score for a given label and post
     double logProScore(string label, string post){
         istringstream source(post);
         set<string> uniqueWordsTest;
@@ -107,7 +106,7 @@ public:
         return result;
     }
     
-    //EFFECTS:given a testfile, predict its label and print out information
+    //given a testfile, predict its label and print out information
     bool predict(string testFile, int &totalPostTest, double &rightResult){
         double correctPredict = 0;
         rowType word;
@@ -138,9 +137,8 @@ public:
         rightResult = correctPredict;
         return true;
     }
-    
-    //MODIFIES:nothing
-    //EFFECTS: help print class information
+
+    //help print class information
     void printClassHelper(){
         cout << "classes:" << endl;
         for(auto i : countLabel){
@@ -150,8 +148,8 @@ public:
         }
     }
     
-    //MODIFIES:nothing
-    //EFFECTS: help print classifier information
+
+    //help print classifier information
     void printClassifierHelper(){
         cout << "classifier parameters:" <<endl;
         for(auto i : countLabel){
@@ -197,8 +195,6 @@ public:
         return totalPost;
     }
 };
-
-
 
 
 
