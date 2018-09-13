@@ -2,6 +2,6 @@
 Read from large CSV/JSON file and train classifier based on that
 
 
-# Resouces
+### Resouces
 Simplified HTTP request client.
-https://github.com/request/request
+<br> https://github.com/request/request
