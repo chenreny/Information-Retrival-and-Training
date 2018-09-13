@@ -8,6 +8,6 @@ The goal is to read from large CSV/JSON file and train classifier based on that
 <br>Make prediction
 
 
-### Resouces
+### Reference
 Simplified HTTP request client.
 <br> https://github.com/request/request
