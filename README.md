@@ -15,16 +15,35 @@ using Pair_type = std::pair<std::string, std::string>;
 
 });
 ```
+
 ### Requesting data
+Example:
 ```
-var request = require('request');
-request('URL', function (error, response, body) {
-  console.log('error:', error); // Print the error if one occurred
-  console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
+function get(options) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // JSON response assumed. Other APIs may have different responses.
+            options.callback(JSON.parse(xhr.responseText));
+            // green
+            google_drive_flag = true;
+        } else {
+            if (xhr.status != 200 && xhr.status != 0) {
+                google_drive_flag = false;
+                console.log('get', xhr.readyState, xhr.status, xhr.responseText);
+            }
+        }
+    };
+    xhr.open("GET", options.url, true);
+    xhr.send();
+}
+```
+### Data strcture underneath
+```
+
+
 });
 ```
-
-
 ### Reference
 Simplified HTTP request client.
 <br> https://github.com/request/request
