@@ -1,11 +1,11 @@
 # Information-Retrival-and-Training
 The goal is to read from large CSV/JSON file and train classifier based on that
-To be more specific:
-Importing data
-Cleaning data
-Splitting it into train sets/Pre-processing
-Calculating 
-Make prediction
+<br>To be more specific:
+<br>Importing data
+<br>Cleaning data
+<br>Splitting it into train sets/Pre-processing
+<br>Calculating 
+<br>Make prediction
 
 
 ### Resouces
