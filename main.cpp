@@ -68,24 +68,18 @@ public:
         return words;
     }
     
-    //count log prior
-    double logPrior(string label){
-        double result = log(countLabel[label] / static_cast<double>(totalPost));
-        return result;
-    }
-    
     //count loglikelihood
     double logLikelihood(string label, string word){
         double result = 0;
         Pair_type val = {label, word};
         if(countLabelWord.find(val) == countLabelWord.end()){
             if(countWord.find(word) == countWord.end()){
-                result = log(1.0 / totalPost);
+                result = log(1.5 / totalPost);
             }else{
-                result = log(countWord[word] / static_cast<double>(totalPost));
+                result = log(1.2 * countWord[word] / static_cast<double>(totalPost));
             }
         }else{
-            result = log(countLabelWord[val]
+            result = log(1.2 * countLabelWord[val]
                          / static_cast<double>(countLabel[label]));
         }
         return result;
@@ -202,11 +196,11 @@ public:
 int main(int argc, char* argv[]){
     cout.precision(3);
     if(argc != 3 && argc != 4){
-        cout << "Usage: main.exe TRAIN_FILE TEST_FILE [--debug]" << endl;
+        cout << "Wrong Usage" << endl;
         return 0;
     }
     if(argc == 4 && string(argv[3]) != "--debug"){
-        cout << "Usage: main.exe TRAIN_FILE TEST_FILE [--debug]" << endl;
+        cout << "Wrong Usage" << endl;
         return 0;
     }
     
