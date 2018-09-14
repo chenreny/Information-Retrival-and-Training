@@ -25,11 +25,8 @@ function get(options) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             // JSON response assumed. Other APIs may have different responses.
             options.callback(JSON.parse(xhr.responseText));
-            // green
-            google_drive_flag = true;
         } else {
             if (xhr.status != 200 && xhr.status != 0) {
-                google_drive_flag = false;
                 console.log('get', xhr.readyState, xhr.status, xhr.responseText);
             }
         }
@@ -50,14 +47,10 @@ private:
     // A custom comparator
     class PairComp {
     public:
-        bool operator() (const Pair_type &lhs, const Pair_type &rhs){
-            Key_compare keyCompare;
-            return keyCompare(lhs.first, rhs.first);
-        }
+        bool operator() (const Pair_type &lhs, const Pair_type &rhs){}
     };
     
 public:
-    
     // Type alias for iterator type
     using Iterator = typename BinarySearchTree<Pair_type, PairComp>::Iterator;
         
@@ -82,32 +75,16 @@ public:
     // value and returns a reference to the mapped value
     Value_type& operator[](const Key_type& k){}
     
-    // MODIFIES: this
-    // EFFECTS : Inserts the given element into this Map if the given key
-    //           is not already contained in the Map. If the key is
-    //           already in the Map, returns an iterator to the
-    //           corresponding existing element, along with the value
-    //           false. Otherwise, inserts the given element and returns
-    //           an iterator to the newly inserted element, along with
-    //           the value true.
-    std::pair<Iterator, bool> insert(const Pair_type &val){
-        Iterator i = tree.find(val);
-        if(i != tree.end()) return {i, false};
-        return {tree.insert(val), true};
-    }
-    
-    // EFFECTS : Returns an iterator to the first key-value pair in this Map.
-    Iterator begin() const{
-        return tree.begin();
-    }
-    
-    // EFFECTS : Returns an iterator to "past-the-end".
-    Iterator end() const{
-        return tree.end();
-    }
-    
+    // Inserts the given element into this Map if the given key
+    // is not already contained in the Map. If the key is
+    // already in the Map, returns an iterator to the
+    // corresponding existing element, along with the value
+    // false. Otherwise, inserts the given element and returns
+    // an iterator to the newly inserted element, along with
+    // the value true.
+    std::pair<Iterator, bool> insert(const Pair_type &val){}
+
 private:
-    // Add a BinarySearchTree private member HERE.
     BinarySearchTree<Pair_type, PairComp> tree;
 };
 ```
