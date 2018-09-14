@@ -40,13 +40,11 @@ function get(options) {
 ```
 ### Data strcture underneath(Map)
 ```
-
 class Map {
     
 private:
     // Type alias for an element, the combination of a key and mapped
-    // value stored in a std::pair.
-    // See http://www.cplusplus.com/reference/utility/pair/
+    // value stored in a std::pair
     using Pair_type = std::pair<Key_type, Value_type>;
     
     // A custom comparator
@@ -60,76 +58,29 @@ private:
     
 public:
     
-
-    
-    // Type alias for iterator type. It is sufficient to use the Iterator
-    // from BinarySearchTree<Pair_type> since it will yield elements of Pair_type
-    // in the appropriate order for the Map.
+    // Type alias for iterator type
     using Iterator = typename BinarySearchTree<Pair_type, PairComp>::Iterator;
-    
-    // You should add in a default constructor, destructor, copy
-    // constructor, and overloaded assignment operator, if appropriate.
-    // If these operations will work correctly without defining them,
-    // you should omit them. A user of the class must be able to create,
-    // copy, assign, and destroy Maps.
-    
+        
     //default constructor
     Map() : tree(){}
     
-
     //copy constructor
     Map(const Map &other) : tree(other.tree){}
     
     //assignment operator
-    Map & operator=(const Map &rhs){
-        if(this == &rhs) return *this;
-        tree = rhs.tree;
-        return *this;
-    }
+    Map & operator=(const Map &rhs){}
+
+    // Searches this Map for an element with a key equivalent
+    Iterator find(const Key_type& k) const{}
     
-    // EFFECTS : Returns whether this Map is empty.
-    bool empty() const{
-        return tree.empty();
-    }
-    
-    // EFFECTS : Returns the number of elements in this Map.
-    // NOTE : size_t is an integral type from the STL
-    size_t size() const{
-        return tree.size();
-    }
-    
-    // EFFECTS : Searches this Map for an element with a key equivalent
-    //           to k and returns an Iterator to the associated value if found,
-    //           otherwise returns an end Iterator.
-    //
-    // HINT: Since Map is implemented using a BinarySearchTree that stores
-    //       (key, value) pairs, you'll need to construct a dummy value
-    //       using "Value_type()".
-    Iterator find(const Key_type& k) const{
-        return tree.find({k, Value_type()});
-    }
-    
-    // MODIFIES: this
-    // EFFECTS : Returns a reference to the mapped value for the given
-    //           key. If k matches the key of an element in the
-    //           container, the function returns a reference to its
-    //           mapped value. If k does not match the key of any
-    //           element in the container, the function inserts a new
-    //           element with that key and a value-initialized mapped
-    //           value and returns a reference to the mapped value.
-    //           Note: value-initialization for numeric types guarantees the
-    //           value will be 0 (rather than memory junk).
-    //
-    // HINT:     In the case the key was not found, and you must insert a
-    //           new element, use the expression {k, Value_type()} to create
-    //           that element. This ensures the proper value-initialization is done.
-    //
-    // HINT: http://www.cplusplus.com/reference/map/map/operator[]/
-    Value_type& operator[](const Key_type& k){
-        Iterator i = find(k);
-        if(i != tree.end()) return (*i).second;
-        return (*tree.insert({k, Value_type()})).second;
-    }
+    // Returns a reference to the mapped value for the given
+    // key. If k matches the key of an element in the
+    // container, the function returns a reference to its
+    // mapped value. If k does not match the key of any
+    // element in the container, the function inserts a new
+    // element with that key and a value-initialized mapped
+    // value and returns a reference to the mapped value
+    Value_type& operator[](const Key_type& k){}
     
     // MODIFIES: this
     // EFFECTS : Inserts the given element into this Map if the given key
